@@ -9,12 +9,14 @@ public class Password {
     private String name;
     private String password;
     private LocalDate createdAt = LocalDate.now();
+    private User user;
 
-    public Password(UUID id, String name, String password, LocalDate createdAt) {
+    public Password(UUID id, String name, String password, LocalDate createdAt, User user) {
         this.id = id;
         this.name = name;
         this.password = password;
         this.createdAt = createdAt;
+        this.user = user;
     }
 
     public Password() {}
@@ -45,6 +47,14 @@ public class Password {
 
     public void setCreatedAt(LocalDate createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
 }

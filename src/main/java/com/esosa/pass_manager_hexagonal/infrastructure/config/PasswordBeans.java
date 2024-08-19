@@ -1,8 +1,8 @@
 package com.esosa.pass_manager_hexagonal.infrastructure.config;
 
 import com.esosa.pass_manager_hexagonal.application.services.PasswordService;
-import com.esosa.pass_manager_hexagonal.application.usecases.*;
-import com.esosa.pass_manager_hexagonal.domain.ports.input.*;
+import com.esosa.pass_manager_hexagonal.application.usecases.password.*;
+import com.esosa.pass_manager_hexagonal.domain.ports.input.password.*;
 import com.esosa.pass_manager_hexagonal.domain.ports.output.PasswordPersistencePort;
 import com.esosa.pass_manager_hexagonal.infrastructure.adapters.PasswordJpaPersistenceAdapter;
 import com.esosa.pass_manager_hexagonal.infrastructure.adapters.repositories.PasswordRepository;

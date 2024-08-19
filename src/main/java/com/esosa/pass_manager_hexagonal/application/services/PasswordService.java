@@ -1,7 +1,7 @@
 package com.esosa.pass_manager_hexagonal.application.services;
 
 import com.esosa.pass_manager_hexagonal.domain.model.Password;
-import com.esosa.pass_manager_hexagonal.domain.ports.input.*;
+import com.esosa.pass_manager_hexagonal.domain.ports.input.password.*;
 
 import java.util.List;
 import java.util.UUID;
