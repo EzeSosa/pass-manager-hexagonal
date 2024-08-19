@@ -1,9 +1,9 @@
 package com.esosa.pass_manager_hexagonal.infrastructure.controllers;
 
-import com.esosa.pass_manager_hexagonal.application.dtos.requests.password.CreatePasswordRequest;
-import com.esosa.pass_manager_hexagonal.application.dtos.requests.password.UpdatePasswordRequest;
+import com.esosa.pass_manager_hexagonal.application.dtos.requests.CreatePasswordRequest;
+import com.esosa.pass_manager_hexagonal.application.dtos.requests.UpdatePasswordRequest;
+import com.esosa.pass_manager_hexagonal.application.dtos.responses.PasswordResponse;
 import com.esosa.pass_manager_hexagonal.application.services.PasswordService;
-import com.esosa.pass_manager_hexagonal.domain.model.Password;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,22 +21,22 @@ public class PasswordController {
     }
 
     @PostMapping @ResponseStatus(HttpStatus.CREATED)
-    public Password savePassword(@RequestBody CreatePasswordRequest createPasswordRequest) {
+    public PasswordResponse savePassword(@RequestBody CreatePasswordRequest createPasswordRequest) {
         return passwordService.savePassword(createPasswordRequest);
     }
 
     @GetMapping @ResponseStatus(HttpStatus.OK)
-    public List<Password> getAllPasswords() {
+    public List<PasswordResponse> getAllPasswords() {
         return passwordService.getAllPasswords();
     }
 
     @GetMapping("/{passwordId}") @ResponseStatus(HttpStatus.OK)
-    public Password getPassword(@PathVariable UUID passwordId) {
+    public PasswordResponse getPassword(@PathVariable UUID passwordId) {
         return passwordService.getPassword(passwordId);
     }
 
     @PatchMapping("/{passwordId}") @ResponseStatus(HttpStatus.OK)
-    public Password updatePassword(@PathVariable UUID passwordId, @RequestBody UpdatePasswordRequest updatePasswordRequest) {
+    public PasswordResponse updatePassword(@PathVariable UUID passwordId, @RequestBody UpdatePasswordRequest updatePasswordRequest) {
         return passwordService.updatePassword(passwordId, updatePasswordRequest);
     }
 

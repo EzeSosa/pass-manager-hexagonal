@@ -1,6 +1,7 @@
 package com.esosa.pass_manager_hexagonal.application.services;
 
-import com.esosa.pass_manager_hexagonal.application.dtos.requests.user.CreateUserRequest;
+import com.esosa.pass_manager_hexagonal.application.dtos.requests.CreateUserRequest;
+import com.esosa.pass_manager_hexagonal.application.dtos.responses.UserResponse;
 import com.esosa.pass_manager_hexagonal.application.mappers.UserMapper;
 import com.esosa.pass_manager_hexagonal.domain.model.User;
 import com.esosa.pass_manager_hexagonal.domain.ports.input.user.GetUserUseCase;
@@ -18,17 +19,20 @@ public class UserService {
         this.getUserUseCase = getUserUseCase;
     }
 
-    public User saveUser(CreateUserRequest createUserRequest) {
+    public UserResponse saveUser(CreateUserRequest createUserRequest) {
         User _user = UserMapper.toUser(createUserRequest);
-        return saveUserUseCase.saveUser(_user);
+        User _savedUser = saveUserUseCase.saveUser(_user);
+        return UserMapper.toUserResponse(_savedUser);
     }
 
-    public User getUserById(UUID userId) {
-        return getUserUseCase.getUserById(userId);
+    public UserResponse getUserById(UUID userId) {
+        User _user = getUserUseCase.getUserById(userId);
+        return UserMapper.toUserResponse(_user);
     }
 
-    public User getUserByUsername(String username) {
-        return getUserUseCase.getUserByUsername(username);
+    public UserResponse getUserByUsername(String username) {
+        User _user = getUserUseCase.getUserByUsername(username);
+        return UserMapper.toUserResponse(_user);
     }
 
 }
