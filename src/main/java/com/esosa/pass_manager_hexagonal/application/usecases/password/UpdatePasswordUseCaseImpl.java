@@ -21,7 +21,7 @@ public class UpdatePasswordUseCaseImpl implements UpdatePasswordUseCase {
     public Password updatePassword(UUID passwordId, Password password) {
         Password _password = getPasswordUseCase.getPassword(passwordId);
         _password.setName(password.getName());
-        return passwordPersistencePort.savePassword(_password);
+        return passwordPersistencePort.updatePassword(_password);
     }
 
 }
