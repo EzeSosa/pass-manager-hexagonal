@@ -1,7 +1,7 @@
-package com.esosa.pass_manager_hexagonal.application.usecases;
+package com.esosa.pass_manager_hexagonal.application.usecases.password;
 
 import com.esosa.pass_manager_hexagonal.domain.model.Password;
-import com.esosa.pass_manager_hexagonal.domain.ports.input.GetPasswordUseCase;
+import com.esosa.pass_manager_hexagonal.domain.ports.input.password.GetPasswordUseCase;
 import com.esosa.pass_manager_hexagonal.domain.ports.output.PasswordPersistencePort;
 
 import java.util.NoSuchElementException;
