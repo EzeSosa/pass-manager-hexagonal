@@ -1,6 +1,7 @@
 package com.esosa.pass_manager_hexagonal.infrastructure.config;
 
 import com.esosa.pass_manager_hexagonal.application.services.PasswordService;
+import com.esosa.pass_manager_hexagonal.application.services.UserService;
 import com.esosa.pass_manager_hexagonal.application.usecases.password.*;
 import com.esosa.pass_manager_hexagonal.domain.ports.input.password.*;
 import com.esosa.pass_manager_hexagonal.domain.ports.output.PasswordPersistencePort;
@@ -13,9 +14,11 @@ import org.springframework.context.annotation.Configuration;
 public class PasswordBeans {
 
     private final PasswordRepository passwordRepository;
+    private final UserService userService;
 
-    public PasswordBeans(PasswordRepository passwordRepository) {
+    public PasswordBeans(PasswordRepository passwordRepository, UserService userService) {
         this.passwordRepository = passwordRepository;
+        this.userService = userService;
     }
 
     @Bean
@@ -30,7 +33,8 @@ public class PasswordBeans {
                 getAllPasswordsUseCase(),
                 getPasswordUseCase(),
                 updatePasswordUseCase(),
-                deletePasswordUseCase()
+                deletePasswordUseCase(),
+                userService
         );
     }
 

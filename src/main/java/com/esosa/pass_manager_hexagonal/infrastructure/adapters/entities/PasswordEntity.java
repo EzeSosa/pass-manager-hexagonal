@@ -2,6 +2,7 @@ package com.esosa.pass_manager_hexagonal.infrastructure.adapters.entities;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 
 import java.time.LocalDate;
 import java.util.UUID;
@@ -15,11 +16,15 @@ public class PasswordEntity {
     private String password;
     private LocalDate createdAt;
 
-    public PasswordEntity(UUID id, String name, String password, LocalDate createdAt) {
+    @ManyToOne
+    private UserEntity user;
+
+    public PasswordEntity(UUID id, String name, String password, LocalDate createdAt, UserEntity user) {
         this.id = id;
         this.name = name;
         this.password = password;
         this.createdAt = createdAt;
+        this.user = user;
     }
 
     public PasswordEntity() {}
@@ -54,6 +59,14 @@ public class PasswordEntity {
 
     public void setCreatedAt(LocalDate createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public UserEntity getUser() {
+        return user;
+    }
+
+    public void setUser(UserEntity user) {
+        this.user = user;
     }
 
 }
