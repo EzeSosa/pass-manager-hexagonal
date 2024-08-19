@@ -19,6 +19,15 @@ public class Password {
         this.user = user;
     }
 
+    public Password(String name, User user) {
+        this.name = name;
+        this.user = user;
+    }
+
+    public Password(String name) {
+        this.name = name;
+    }
+
     public Password() {}
 
     public UUID getId() {

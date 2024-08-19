@@ -1,5 +1,7 @@
 package com.esosa.pass_manager_hexagonal.infrastructure.controllers;
 
+import com.esosa.pass_manager_hexagonal.application.dtos.requests.password.CreatePasswordRequest;
+import com.esosa.pass_manager_hexagonal.application.dtos.requests.password.UpdatePasswordRequest;
 import com.esosa.pass_manager_hexagonal.application.services.PasswordService;
 import com.esosa.pass_manager_hexagonal.domain.model.Password;
 import org.springframework.http.HttpStatus;
@@ -19,8 +21,8 @@ public class PasswordController {
     }
 
     @PostMapping @ResponseStatus(HttpStatus.CREATED)
-    public Password savePassword(@RequestBody Password password) {
-        return passwordService.savePassword(password);
+    public Password savePassword(@RequestBody CreatePasswordRequest createPasswordRequest) {
+        return passwordService.savePassword(createPasswordRequest);
     }
 
     @GetMapping @ResponseStatus(HttpStatus.OK)
@@ -34,8 +36,8 @@ public class PasswordController {
     }
 
     @PatchMapping("/{passwordId}") @ResponseStatus(HttpStatus.OK)
-    public Password updatePassword(@PathVariable UUID passwordId, @RequestBody Password password) {
-        return passwordService.updatePassword(passwordId, password);
+    public Password updatePassword(@PathVariable UUID passwordId, @RequestBody UpdatePasswordRequest updatePasswordRequest) {
+        return passwordService.updatePassword(passwordId, updatePasswordRequest);
     }
 
     @DeleteMapping("/{passwordId}") @ResponseStatus(HttpStatus.NO_CONTENT)

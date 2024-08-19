@@ -3,7 +3,7 @@ package com.esosa.pass_manager_hexagonal.infrastructure.adapters;
 import com.esosa.pass_manager_hexagonal.domain.model.Password;
 import com.esosa.pass_manager_hexagonal.domain.ports.output.PasswordPersistencePort;
 import com.esosa.pass_manager_hexagonal.infrastructure.adapters.entities.PasswordEntity;
-import com.esosa.pass_manager_hexagonal.infrastructure.adapters.mappers.PasswordMapper;
+import com.esosa.pass_manager_hexagonal.infrastructure.adapters.mappers.PasswordEntityMapper;
 import com.esosa.pass_manager_hexagonal.infrastructure.adapters.repositories.PasswordRepository;
 
 import java.util.List;
@@ -21,22 +21,22 @@ public class PasswordJpaPersistenceAdapter implements PasswordPersistencePort {
 
     @Override
     public Password savePassword(Password password) {
-        PasswordEntity _passwordEntity = PasswordMapper.toPasswordEntity(password);
+        PasswordEntity _passwordEntity = PasswordEntityMapper.toPasswordEntity(password);
         passwordRepository.save(_passwordEntity);
-        return PasswordMapper.toPasswordDomain(_passwordEntity);
+        return PasswordEntityMapper.toPasswordDomain(_passwordEntity);
     }
 
     @Override
     public List<Password> getAllPasswords() {
         return passwordRepository.findAll().stream()
-                .map(PasswordMapper::toPasswordDomain)
+                .map(PasswordEntityMapper::toPasswordDomain)
                 .collect(Collectors.toList());
     }
 
     @Override
     public Optional<Password> getPassword(UUID passwordId) {
         return passwordRepository.findById(passwordId)
-                .map(PasswordMapper::toPasswordDomain);
+                .map(PasswordEntityMapper::toPasswordDomain);
     }
 
     @Override
