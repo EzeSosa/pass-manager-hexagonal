@@ -1,7 +1,7 @@
-package com.esosa.pass_manager_hexagonal.infrastructure.adapters.mappers;
+package com.esosa.pass_manager_hexagonal.infrastructure.adapters.persistence.mappers;
 
 import com.esosa.pass_manager_hexagonal.domain.model.User;
-import com.esosa.pass_manager_hexagonal.infrastructure.adapters.entities.UserEntity;
+import com.esosa.pass_manager_hexagonal.infrastructure.adapters.persistence.entities.UserEntity;
 
 public class UserEntityMapper {
 
