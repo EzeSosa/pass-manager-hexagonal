@@ -1,10 +1,10 @@
-package com.esosa.pass_manager_hexagonal.infrastructure.adapters;
+package com.esosa.pass_manager_hexagonal.infrastructure.adapters.persistence;
 
 import com.esosa.pass_manager_hexagonal.domain.model.User;
-import com.esosa.pass_manager_hexagonal.domain.ports.output.UserPersistencePort;
-import com.esosa.pass_manager_hexagonal.infrastructure.adapters.entities.UserEntity;
-import com.esosa.pass_manager_hexagonal.infrastructure.adapters.mappers.UserEntityMapper;
-import com.esosa.pass_manager_hexagonal.infrastructure.adapters.repositories.UserRepository;
+import com.esosa.pass_manager_hexagonal.domain.ports.output.persistence.UserPersistencePort;
+import com.esosa.pass_manager_hexagonal.infrastructure.adapters.persistence.entities.UserEntity;
+import com.esosa.pass_manager_hexagonal.infrastructure.adapters.persistence.mappers.UserEntityMapper;
+import com.esosa.pass_manager_hexagonal.infrastructure.adapters.persistence.repositories.UserRepository;
 
 import java.util.Optional;
 import java.util.UUID;

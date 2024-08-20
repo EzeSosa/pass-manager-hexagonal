@@ -1,7 +1,7 @@
-package com.esosa.pass_manager_hexagonal.infrastructure.adapters.mappers;
+package com.esosa.pass_manager_hexagonal.infrastructure.adapters.persistence.mappers;
 
 import com.esosa.pass_manager_hexagonal.domain.model.Password;
-import com.esosa.pass_manager_hexagonal.infrastructure.adapters.entities.PasswordEntity;
+import com.esosa.pass_manager_hexagonal.infrastructure.adapters.persistence.entities.PasswordEntity;
 
 import java.util.List;
 import java.util.stream.Collectors;

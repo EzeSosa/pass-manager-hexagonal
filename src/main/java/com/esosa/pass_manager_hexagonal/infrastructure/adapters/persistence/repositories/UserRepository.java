@@ -1,6 +1,6 @@
-package com.esosa.pass_manager_hexagonal.infrastructure.adapters.repositories;
+package com.esosa.pass_manager_hexagonal.infrastructure.adapters.persistence.repositories;
 
-import com.esosa.pass_manager_hexagonal.infrastructure.adapters.entities.UserEntity;
+import com.esosa.pass_manager_hexagonal.infrastructure.adapters.persistence.entities.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

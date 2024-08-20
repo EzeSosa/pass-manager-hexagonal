@@ -1,6 +1,6 @@
 package com.esosa.pass_manager_hexagonal.application.dtos.requests;
 
-public record CreateUserRequest(
+public record UserRequest(
         String username,
         String password
 ) {}

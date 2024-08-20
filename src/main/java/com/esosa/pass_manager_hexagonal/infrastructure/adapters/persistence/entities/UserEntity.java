@@ -1,4 +1,4 @@
-package com.esosa.pass_manager_hexagonal.infrastructure.adapters.entities;
+package com.esosa.pass_manager_hexagonal.infrastructure.adapters.persistence.entities;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;

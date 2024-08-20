@@ -1,4 +1,4 @@
-package com.esosa.pass_manager_hexagonal.domain.ports.output;
+package com.esosa.pass_manager_hexagonal.domain.ports.output.persistence;
 
 import com.esosa.pass_manager_hexagonal.domain.model.User;
 

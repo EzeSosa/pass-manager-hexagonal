@@ -1,13 +1,13 @@
-package com.esosa.pass_manager_hexagonal.infrastructure.adapters;
+package com.esosa.pass_manager_hexagonal.infrastructure.adapters.persistence;
 
 import com.esosa.pass_manager_hexagonal.domain.model.Password;
 import com.esosa.pass_manager_hexagonal.domain.model.User;
-import com.esosa.pass_manager_hexagonal.domain.ports.output.PasswordPersistencePort;
-import com.esosa.pass_manager_hexagonal.infrastructure.adapters.entities.PasswordEntity;
-import com.esosa.pass_manager_hexagonal.infrastructure.adapters.entities.UserEntity;
-import com.esosa.pass_manager_hexagonal.infrastructure.adapters.mappers.PasswordEntityMapper;
-import com.esosa.pass_manager_hexagonal.infrastructure.adapters.mappers.UserEntityMapper;
-import com.esosa.pass_manager_hexagonal.infrastructure.adapters.repositories.PasswordRepository;
+import com.esosa.pass_manager_hexagonal.domain.ports.output.persistence.PasswordPersistencePort;
+import com.esosa.pass_manager_hexagonal.infrastructure.adapters.persistence.entities.PasswordEntity;
+import com.esosa.pass_manager_hexagonal.infrastructure.adapters.persistence.entities.UserEntity;
+import com.esosa.pass_manager_hexagonal.infrastructure.adapters.persistence.mappers.PasswordEntityMapper;
+import com.esosa.pass_manager_hexagonal.infrastructure.adapters.persistence.mappers.UserEntityMapper;
+import com.esosa.pass_manager_hexagonal.infrastructure.adapters.persistence.repositories.PasswordRepository;
 
 import java.util.List;
 import java.util.Optional;
