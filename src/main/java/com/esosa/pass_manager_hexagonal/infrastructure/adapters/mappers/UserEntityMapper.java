@@ -9,8 +9,7 @@ public class UserEntityMapper {
         return new User(
                 userEntity.getId(),
                 userEntity.getUsername(),
-                userEntity.getPassword(),
-                PasswordEntityMapper.toPasswordDomainList(userEntity.getPasswords())
+                userEntity.getPassword()
         );
     }
 
@@ -18,8 +17,7 @@ public class UserEntityMapper {
         return new UserEntity(
                 user.getId(),
                 user.getUsername(),
-                user.getPassword(),
-                PasswordEntityMapper.toPasswordEntityList(user.getPasswords())
+                user.getPassword()
         );
     }
 

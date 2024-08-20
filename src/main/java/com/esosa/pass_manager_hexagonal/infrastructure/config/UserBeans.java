@@ -3,6 +3,7 @@ package com.esosa.pass_manager_hexagonal.infrastructure.config;
 import com.esosa.pass_manager_hexagonal.application.services.UserService;
 import com.esosa.pass_manager_hexagonal.application.usecases.user.GetUserUserCaseImpl;
 import com.esosa.pass_manager_hexagonal.application.usecases.user.SaveUserUseCaseImpl;
+import com.esosa.pass_manager_hexagonal.domain.ports.input.password.GetUserPasswordsUseCase;
 import com.esosa.pass_manager_hexagonal.domain.ports.input.user.GetUserUseCase;
 import com.esosa.pass_manager_hexagonal.domain.ports.input.user.SaveUserUseCase;
 import com.esosa.pass_manager_hexagonal.domain.ports.output.UserPersistencePort;
@@ -10,14 +11,17 @@ import com.esosa.pass_manager_hexagonal.infrastructure.adapters.UserJpaPersisten
 import com.esosa.pass_manager_hexagonal.infrastructure.adapters.repositories.UserRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Lazy;
 
 @Configuration
 public class UserBeans {
 
     private final UserRepository userRepository;
+    private final GetUserPasswordsUseCase getUserPasswordsUseCase;
 
-    public UserBeans(UserRepository userRepository) {
+    public UserBeans(UserRepository userRepository, @Lazy GetUserPasswordsUseCase getUserPasswordsUseCase) {
         this.userRepository = userRepository;
+        this.getUserPasswordsUseCase = getUserPasswordsUseCase;
     }
 
     @Bean
@@ -27,7 +31,7 @@ public class UserBeans {
 
     @Bean
     public UserService userService() {
-        return new UserService( saveUserUseCase(), getUserUseCase() );
+        return new UserService( saveUserUseCase(), getUserUseCase(), getUserPasswordsUseCase);
     }
 
     @Bean

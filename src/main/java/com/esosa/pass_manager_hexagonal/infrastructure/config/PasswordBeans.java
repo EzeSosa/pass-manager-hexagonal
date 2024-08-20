@@ -9,6 +9,7 @@ import com.esosa.pass_manager_hexagonal.infrastructure.adapters.PasswordJpaPersi
 import com.esosa.pass_manager_hexagonal.infrastructure.adapters.repositories.PasswordRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Lazy;
 
 @Configuration
 public class PasswordBeans {
@@ -16,7 +17,7 @@ public class PasswordBeans {
     private final PasswordRepository passwordRepository;
     private final GetUserUseCase getUserUseCase;
 
-    public PasswordBeans(PasswordRepository passwordRepository, GetUserUseCase getUserUseCase) {
+    public PasswordBeans(PasswordRepository passwordRepository, @Lazy GetUserUseCase getUserUseCase) {
         this.passwordRepository = passwordRepository;
         this.getUserUseCase = getUserUseCase;
     }
@@ -61,6 +62,11 @@ public class PasswordBeans {
     @Bean
     public DeletePasswordUseCase deletePasswordUseCase() {
         return new DeletePasswordUseCaseImpl(passwordPersistencePort());
+    }
+
+    @Bean
+    public GetUserPasswordsUseCase getUserPasswordsUseCase() {
+        return new GetUserPasswordsUseCaseImpl(passwordPersistencePort());
     }
 
 }

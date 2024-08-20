@@ -18,11 +18,10 @@ public class UserEntity {
     @OneToMany(mappedBy = "user")
     private List<PasswordEntity> passwords;
 
-    public UserEntity(UUID id, String username, String password, List<PasswordEntity> passwords) {
+    public UserEntity(UUID id, String username, String password) {
         this.id = id;
         this.username = username;
         this.password = password;
-        this.passwords = passwords;
     }
 
     public UserEntity() {}

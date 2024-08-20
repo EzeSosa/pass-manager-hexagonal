@@ -1,6 +1,7 @@
 package com.esosa.pass_manager_hexagonal.domain.ports.output;
 
 import com.esosa.pass_manager_hexagonal.domain.model.Password;
+import com.esosa.pass_manager_hexagonal.domain.model.User;
 
 import java.util.List;
 import java.util.Optional;
@@ -19,5 +20,7 @@ public interface PasswordPersistencePort {
     void deletePassword(UUID passwordId);
 
     boolean existsPasswordById(UUID passwordId);
+
+    List<Password> getUserPasswords(User user);
 
 }

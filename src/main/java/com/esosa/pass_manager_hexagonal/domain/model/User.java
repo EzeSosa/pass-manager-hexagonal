@@ -1,7 +1,5 @@
 package com.esosa.pass_manager_hexagonal.domain.model;
 
-import java.util.Collections;
-import java.util.List;
 import java.util.UUID;
 
 public class User {
@@ -9,13 +7,11 @@ public class User {
     private UUID id = UUID.randomUUID();
     private String username;
     private String password;
-    private List<Password> passwords = Collections.emptyList();
 
-    public User(UUID id, String username, String password, List<Password> passwords) {
+    public User(UUID id, String username, String password) {
         this.id = id;
         this.username = username;
         this.password = password;
-        this.passwords = passwords;
     }
 
     public User(String username, String password) {
@@ -47,14 +43,6 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public List<Password> getPasswords() {
-        return passwords;
-    }
-
-    public void setPasswords(List<Password> passwords) {
-        this.passwords = passwords;
     }
 
 }
