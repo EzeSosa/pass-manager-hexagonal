@@ -2,7 +2,7 @@ package com.esosa.pass_manager_hexagonal.application.usecases.user;
 
 import com.esosa.pass_manager_hexagonal.domain.model.User;
 import com.esosa.pass_manager_hexagonal.domain.ports.input.user.SaveUserUseCase;
-import com.esosa.pass_manager_hexagonal.domain.ports.output.UserPersistencePort;
+import com.esosa.pass_manager_hexagonal.domain.ports.output.persistence.UserPersistencePort;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
 
