@@ -1,8 +1,6 @@
 package com.esosa.pass_manager_hexagonal.infrastructure.controllers;
 
-import com.esosa.pass_manager_hexagonal.application.dtos.requests.CreateUserRequest;
 import com.esosa.pass_manager_hexagonal.application.dtos.responses.PasswordResponse;
-import com.esosa.pass_manager_hexagonal.application.dtos.responses.UserResponse;
 import com.esosa.pass_manager_hexagonal.application.services.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -18,11 +16,6 @@ public class UserController {
 
     public UserController(UserService userService) {
         this.userService = userService;
-    }
-
-    @PostMapping @ResponseStatus(HttpStatus.CREATED)
-    public UserResponse saveUser(@RequestBody CreateUserRequest createUserRequest) {
-        return userService.saveUser(createUserRequest);
     }
 
     @GetMapping("/{userId}/passwords") @ResponseStatus(HttpStatus.OK)
