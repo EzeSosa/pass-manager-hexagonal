@@ -23,4 +23,6 @@ public interface PasswordPersistencePort {
 
     List<Password> getUserPasswords(User user);
 
+    boolean existsPasswordByNameAndUser(String name, User user);
+
 }

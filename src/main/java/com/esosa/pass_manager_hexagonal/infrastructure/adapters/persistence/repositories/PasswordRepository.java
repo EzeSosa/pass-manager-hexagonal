@@ -9,4 +9,5 @@ import java.util.UUID;
 
 public interface PasswordRepository extends JpaRepository<PasswordEntity, UUID> {
     List<PasswordEntity> findByUser(UserEntity user);
+    boolean existsByNameAndUser(String name, UserEntity user);
 }

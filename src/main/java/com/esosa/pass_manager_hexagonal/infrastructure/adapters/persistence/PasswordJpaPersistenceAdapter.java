@@ -65,4 +65,10 @@ public class PasswordJpaPersistenceAdapter implements PasswordPersistencePort {
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public boolean existsPasswordByNameAndUser(String name, User user) {
+        UserEntity _userEntity = UserEntityMapper.toUserEntity(user);
+        return passwordRepository.existsByNameAndUser(name, _userEntity);
+    }
+
 }
