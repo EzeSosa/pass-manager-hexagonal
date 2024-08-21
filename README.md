@@ -55,4 +55,4 @@ Follow these steps to install and run the project:
   4. Run the project: `mvn spring-boot:run`
   5. The project will run at `http://localhost:8080`. You can use either the [front-end page](https://github.com/EzeSosa/pass-manager-front) or Postman to start generating passwords.
 
-Notice that since we are using MySQL, you should create your own database and configure it on [application.yaml](src/main/resources/application.yml).
+Notice that since we are using MySQL, you should create your own database and configure it on [application.yaml](src/main/resources/application.yaml).
