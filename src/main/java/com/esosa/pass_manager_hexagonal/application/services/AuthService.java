@@ -2,6 +2,7 @@ package com.esosa.pass_manager_hexagonal.application.services;
 
 import com.esosa.pass_manager_hexagonal.application.dtos.requests.UserRequest;
 import com.esosa.pass_manager_hexagonal.application.dtos.responses.AuthResponse;
+import com.esosa.pass_manager_hexagonal.application.dtos.responses.UserResponse;
 import com.esosa.pass_manager_hexagonal.application.mappers.UserMapper;
 import com.esosa.pass_manager_hexagonal.domain.model.User;
 import com.esosa.pass_manager_hexagonal.domain.ports.input.auth.LoginUseCase;
@@ -29,7 +30,9 @@ public class AuthService {
         User _user = getUserUseCase.getUserByUsername(userRequest.username());
         _user.setPassword(userRequest.password());
         String _accessToken = loginUseCase.login(_user);
-        return new AuthResponse( _user, _accessToken );
+
+        UserResponse _userResponse = UserMapper.toUserResponse(_user);
+        return new AuthResponse( _userResponse, _accessToken );
     }
 
 }
