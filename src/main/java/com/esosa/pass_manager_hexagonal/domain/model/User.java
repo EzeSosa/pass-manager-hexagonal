@@ -14,11 +14,6 @@ public class User {
         this.password = password;
     }
 
-    public User(String username, String password) {
-        this.username = username;
-        this.password = password;
-    }
-
     public User() {}
 
     public UUID getId() {
@@ -43,6 +38,39 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public static UserBuilder builder() {
+        return new UserBuilder();
+    }
+
+    public static class UserBuilder {
+
+        private UUID id = UUID.randomUUID();
+        private String username;
+        private String password;
+
+        private UserBuilder() {}
+
+        public UserBuilder id(UUID id) {
+            this.id = id;
+            return this;
+        }
+
+        public UserBuilder username(String username) {
+            this.username = username;
+            return this;
+        }
+
+        public UserBuilder password(String password) {
+            this.password = password;
+            return this;
+        }
+
+        public User build() {
+            return new User(id, username, password);
+        }
+
     }
 
 }

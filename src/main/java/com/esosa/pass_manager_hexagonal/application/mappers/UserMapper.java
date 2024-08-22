@@ -7,7 +7,10 @@ import com.esosa.pass_manager_hexagonal.domain.model.User;
 public class UserMapper {
 
     public static User toUser(UserRequest userRequest) {
-        return new User(userRequest.username(), userRequest.password());
+        return User.builder()
+                .username( userRequest.username() )
+                .password( userRequest.password() )
+                .build();
     }
 
     public static UserResponse toUserResponse(User user) {

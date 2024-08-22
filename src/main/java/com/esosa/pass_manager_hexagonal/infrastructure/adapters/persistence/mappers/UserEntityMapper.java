@@ -6,11 +6,11 @@ import com.esosa.pass_manager_hexagonal.infrastructure.adapters.persistence.enti
 public class UserEntityMapper {
 
     public static User toUserDomain(UserEntity userEntity) {
-        return new User(
-                userEntity.getId(),
-                userEntity.getUsername(),
-                userEntity.getPassword()
-        );
+        return User.builder()
+                .id( userEntity.getId() )
+                .username( userEntity.getUsername() )
+                .password( userEntity.getPassword() )
+                .build();
     }
 
     public static UserEntity toUserEntity(User user) {
