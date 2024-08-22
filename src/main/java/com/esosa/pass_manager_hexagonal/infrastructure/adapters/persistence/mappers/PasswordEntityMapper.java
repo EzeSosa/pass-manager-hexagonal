@@ -3,30 +3,16 @@ package com.esosa.pass_manager_hexagonal.infrastructure.adapters.persistence.map
 import com.esosa.pass_manager_hexagonal.domain.model.Password;
 import com.esosa.pass_manager_hexagonal.infrastructure.adapters.persistence.entities.PasswordEntity;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 public class PasswordEntityMapper {
 
-    public static List<Password> toPasswordDomainList(List<PasswordEntity> passwordEntityList) {
-        return passwordEntityList.stream()
-                .map(PasswordEntityMapper::toPasswordDomain)
-                .collect(Collectors.toList());
-    }
-
-    public static List<PasswordEntity> toPasswordEntityList(List<Password> passwords) {
-        return passwords.stream()
-                .map(PasswordEntityMapper::toPasswordEntity)
-                .collect(Collectors.toList());
-    }
-
     public static Password toPasswordDomain(PasswordEntity passwordEntity) {
-        return new Password(
-                passwordEntity.getId(),
-                passwordEntity.getName(),
-                passwordEntity.getPassword(),
-                passwordEntity.getCreatedAt(),
-                UserEntityMapper.toUserDomain(passwordEntity.getUser()));
+        return Password.builder()
+                .id( passwordEntity.getId() )
+                .name( passwordEntity.getName() )
+                .password( passwordEntity.getPassword() )
+                .createdAt( passwordEntity.getCreatedAt() )
+                .user( UserEntityMapper.toUserDomain(passwordEntity.getUser()) )
+                .build();
     }
 
     public static PasswordEntity toPasswordEntity(Password password) {

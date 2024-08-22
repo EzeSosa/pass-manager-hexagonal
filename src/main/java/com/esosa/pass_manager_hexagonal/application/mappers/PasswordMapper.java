@@ -9,11 +9,16 @@ import com.esosa.pass_manager_hexagonal.domain.model.User;
 public class PasswordMapper {
 
     public static Password toPassword(CreatePasswordRequest createPasswordRequest, User user) {
-        return new Password(createPasswordRequest.name(), user);
+        return Password.builder()
+                .name(createPasswordRequest.name())
+                .user(user)
+                .build();
     }
 
     public static Password toPassword(UpdatePasswordRequest updatePasswordRequest) {
-        return new Password(updatePasswordRequest.name());
+        return Password.builder()
+                .name(updatePasswordRequest.name())
+                .build();
     }
 
     public static PasswordResponse toPasswordResponse(Password password) {

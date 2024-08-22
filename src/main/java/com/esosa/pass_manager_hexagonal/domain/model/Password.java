@@ -5,10 +5,10 @@ import java.util.UUID;
 
 public class Password {
 
-    private UUID id = UUID.randomUUID();
+    private UUID id;
     private String name;
     private String password;
-    private LocalDate createdAt = LocalDate.now();
+    private LocalDate createdAt;
     private User user;
 
     public Password(UUID id, String name, String password, LocalDate createdAt, User user) {
@@ -17,15 +17,6 @@ public class Password {
         this.password = password;
         this.createdAt = createdAt;
         this.user = user;
-    }
-
-    public Password(String name, User user) {
-        this.name = name;
-        this.user = user;
-    }
-
-    public Password(String name) {
-        this.name = name;
     }
 
     public Password() {}
@@ -64,6 +55,51 @@ public class Password {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public static PasswordBuilder builder() {
+        return new PasswordBuilder();
+    }
+
+    public static class PasswordBuilder {
+
+        private UUID id = UUID.randomUUID();
+        private String name;
+        private String password;
+        private LocalDate createdAt = LocalDate.now();
+        private User user;
+
+        private PasswordBuilder() {}
+
+        public PasswordBuilder name(String name) {
+            this.name = name;
+            return this;
+        }
+
+        public PasswordBuilder id(UUID id) {
+            this.id = id;
+            return this;
+        }
+
+        public PasswordBuilder password(String password) {
+            this.password = password;
+            return this;
+        }
+
+        public PasswordBuilder createdAt(LocalDate createdAt) {
+            this.createdAt = createdAt;
+            return this;
+        }
+
+        public PasswordBuilder user(User user) {
+            this.user = user;
+            return this;
+        }
+
+        public Password build() {
+            return new Password(id, name, password, createdAt, user);
+        }
+
     }
 
 }
