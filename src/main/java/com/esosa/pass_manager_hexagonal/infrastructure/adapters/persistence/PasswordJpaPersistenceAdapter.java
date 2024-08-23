@@ -49,7 +49,10 @@ public class PasswordJpaPersistenceAdapter implements PasswordPersistencePort {
 
     @Override
     public void deletePassword(UUID passwordId) {
-        passwordRepository.deleteById(passwordId);
+        PasswordEntity _passwordEntity = passwordRepository.findById(passwordId)
+                .orElseThrow();
+        _passwordEntity.setDeleted(true);
+        passwordRepository.save(_passwordEntity);
     }
 
     @Override
