@@ -7,13 +7,15 @@ import jakarta.persistence.OneToMany;
 import java.util.List;
 import java.util.UUID;
 
-@Entity(name = "user")
+@Entity(name = "users")
 public class UserEntity {
 
     @Id
     private UUID id;
     private String username;
     private String password;
+
+    private boolean deleted = false;
 
     @OneToMany(mappedBy = "user")
     private List<PasswordEntity> passwords;
@@ -56,6 +58,10 @@ public class UserEntity {
 
     public void setPasswords(List<PasswordEntity> passwords) {
         this.passwords = passwords;
+    }
+
+    public void setDeleted(boolean deleted) {
+        this.deleted = deleted;
     }
 
 }

@@ -7,7 +7,7 @@ import jakarta.persistence.ManyToOne;
 import java.time.LocalDate;
 import java.util.UUID;
 
-@Entity(name = "password")
+@Entity(name = "passwords")
 public class PasswordEntity {
 
     @Id
@@ -15,6 +15,7 @@ public class PasswordEntity {
     private String name;
     private String password;
     private LocalDate createdAt;
+    private boolean deleted = false;
 
     @ManyToOne
     private UserEntity user;
@@ -67,6 +68,10 @@ public class PasswordEntity {
 
     public void setUser(UserEntity user) {
         this.user = user;
+    }
+
+    public void setDeleted(boolean deleted) {
+        this.deleted = deleted;
     }
 
 }
