@@ -17,5 +17,21 @@ public interface PasswordRepository extends JpaRepository<PasswordEntity, UUID> 
     )
     List<PasswordEntity> findByUser(UserEntity user);
 
+    @Query(
+            "SELECT CASE WHEN COUNT(p) > 0 THEN true ELSE false END " +
+            " FROM passwords p" +
+            " WHERE (p.name = ?1)" +
+            " AND (p.user = ?2)" +
+            " AND (p.deleted = false)"
+    )
     boolean existsByNameAndUser(String name, UserEntity user);
+
+    @Query(
+            "SELECT CASE WHEN COUNT(p) > 0 THEN true ELSE false END " +
+            " FROM passwords p" +
+            " WHERE (p.id = ?1)" +
+            " AND (p.deleted = false)"
+    )
+    boolean existsById(UUID passwordId);
+
 }
