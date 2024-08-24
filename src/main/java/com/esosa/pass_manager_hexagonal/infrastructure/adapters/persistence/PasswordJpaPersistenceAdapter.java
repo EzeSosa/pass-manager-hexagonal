@@ -1,18 +1,21 @@
 package com.esosa.pass_manager_hexagonal.infrastructure.adapters.persistence;
 
+import com.esosa.pass_manager_hexagonal.domain.extras.CustomPage;
 import com.esosa.pass_manager_hexagonal.domain.model.Password;
 import com.esosa.pass_manager_hexagonal.domain.model.User;
 import com.esosa.pass_manager_hexagonal.domain.ports.output.persistence.PasswordPersistencePort;
 import com.esosa.pass_manager_hexagonal.infrastructure.adapters.persistence.entities.PasswordEntity;
 import com.esosa.pass_manager_hexagonal.infrastructure.adapters.persistence.entities.UserEntity;
+import com.esosa.pass_manager_hexagonal.infrastructure.adapters.persistence.mappers.CustomPageMapper;
 import com.esosa.pass_manager_hexagonal.infrastructure.adapters.persistence.mappers.PasswordEntityMapper;
 import com.esosa.pass_manager_hexagonal.infrastructure.adapters.persistence.mappers.UserEntityMapper;
 import com.esosa.pass_manager_hexagonal.infrastructure.adapters.persistence.repositories.PasswordRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 
-import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 public class PasswordJpaPersistenceAdapter implements PasswordPersistencePort {
 
@@ -54,11 +57,13 @@ public class PasswordJpaPersistenceAdapter implements PasswordPersistencePort {
     }
 
     @Override
-    public List<Password> getUserPasswords(User user) {
+    public CustomPage<Password> getUserPasswords(User user, int pageNumber, int pageSize, String sortBy) {
         UserEntity _userEntity = UserEntityMapper.toUserEntity(user);
-        return passwordRepository.findByUser(_userEntity).stream()
-                .map(PasswordEntityMapper::toPasswordDomain)
-                .collect(Collectors.toList());
+        PageRequest _pageRequest = PageRequest.of(pageNumber, pageSize, Sort.by(Sort.Direction.DESC, sortBy));
+        Page<Password> _userPasswords = passwordRepository.findByUser( _pageRequest, _userEntity )
+                .map(PasswordEntityMapper::toPasswordDomain);
+
+        return CustomPageMapper.buildCustomPage(_userPasswords);
     }
 
     @Override
