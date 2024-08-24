@@ -12,7 +12,7 @@ Technologies used:
 
 ## Architecture
 
-This project was created using hexagonal architecture. Hexagonal architecture is one of the moust famous implementation of clean architecture, and it aims to create loosely coupled architectures, where components can be tested independently.
+This project was created using hexagonal architecture. Hexagonal architecture is one of the most famous implementation of clean architecture, and it aims to create loosely coupled architectures, where components can be tested independently.
 
 ![Hexagonal Architecture](https://github.com/user-attachments/assets/8c3ac06a-3879-46d1-9816-c92452478419)
 
@@ -21,9 +21,9 @@ This architecture defines three principal layers:
   - The application layer, which contains the services and the application logic, and
   - The infrastructure layer, which implements all the components related to the framework and external dependencies (such as REST API or databases).
 
-The main goal of this separation is to make use of the depedency inversion principle. Within this architecture, infrastructure layer depends of application and domain layer, and application layer depends of domain layer, while domain layer depends on itself.
+The main goal of this separation is to make use of the dependency inversion principle. Within this architecture, infrastructure layer depends on application and domain layer, and application layer depends on domain layer, while domain layer depends on itself.
 
-The implementation of this archicture leads to the following __basic__ directory structure:
+The implementation of this architecture leads to the following __basic__ directory structure:
 
 ```
 pass-manager
@@ -49,7 +49,7 @@ Finally, in this project was also implemented the authentication mechanism using
 
 Follow these steps to install and run the project:
 
-  1. Clone the repository: `git clone https://github.com/EzeSosa/pass-manager-back.git`
+  1. Clone the repository: `git clone https://github.com/EzeSosa/pass-manager-hexagonal.git`
   2. Navigate to the project directory: `cd your-repo`
   3. Build the project using Maven: `mvn clean install`
   4. Run the project: `mvn spring-boot:run`
