@@ -1,4 +1,4 @@
-package com.esosa.pass_manager_hexagonal.domain.extras;
+package com.esosa.pass_manager_hexagonal.domain.shared;
 
 import java.util.List;
 import java.util.function.Function;

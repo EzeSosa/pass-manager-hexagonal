@@ -1,6 +1,6 @@
 package com.esosa.pass_manager_hexagonal.infrastructure.adapters.persistence.mappers;
 
-import com.esosa.pass_manager_hexagonal.domain.extras.CustomPage;
+import com.esosa.pass_manager_hexagonal.domain.shared.CustomPage;
 import org.springframework.data.domain.Page;
 
 public class CustomPageMapper {
