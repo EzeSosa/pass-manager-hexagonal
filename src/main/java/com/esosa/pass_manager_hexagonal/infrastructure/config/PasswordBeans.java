@@ -31,7 +31,6 @@ public class PasswordBeans {
     public PasswordService passwordService() {
         return new PasswordService(
                 savePasswordUseCase(),
-                getAllPasswordsUseCase(),
                 getPasswordUseCase(),
                 updatePasswordUseCase(),
                 deletePasswordUseCase(),
@@ -42,11 +41,6 @@ public class PasswordBeans {
     @Bean
     public SavePasswordUseCase savePasswordUseCase() {
         return new SavePasswordUseCaseImpl(passwordPersistencePort());
-    }
-
-    @Bean
-    public GetAllPasswordsUseCase getAllPasswordsUseCase() {
-        return new GetAllPasswordsUseCaseImpl(passwordPersistencePort());
     }
 
     @Bean

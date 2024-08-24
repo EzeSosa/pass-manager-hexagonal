@@ -7,7 +7,6 @@ import com.esosa.pass_manager_hexagonal.application.services.PasswordService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.UUID;
 
 @RequestMapping("/api/v1/passwords")
@@ -23,11 +22,6 @@ public class PasswordController {
     @PostMapping @ResponseStatus(HttpStatus.CREATED)
     public PasswordResponse savePassword(@RequestBody CreatePasswordRequest createPasswordRequest) {
         return passwordService.savePassword(createPasswordRequest);
-    }
-
-    @GetMapping @ResponseStatus(HttpStatus.OK)
-    public List<PasswordResponse> getAllPasswords() {
-        return passwordService.getAllPasswords();
     }
 
     @GetMapping("/{passwordId}") @ResponseStatus(HttpStatus.OK)
