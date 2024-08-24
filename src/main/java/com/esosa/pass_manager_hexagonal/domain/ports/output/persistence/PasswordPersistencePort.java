@@ -11,8 +11,6 @@ public interface PasswordPersistencePort {
 
     Password savePassword(Password password);
 
-    List<Password> getAllPasswords();
-
     Optional<Password> getPassword(UUID passwordId);
 
     Password updatePassword(Password password);

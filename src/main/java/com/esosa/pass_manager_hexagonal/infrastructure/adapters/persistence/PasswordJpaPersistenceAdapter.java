@@ -30,13 +30,6 @@ public class PasswordJpaPersistenceAdapter implements PasswordPersistencePort {
     }
 
     @Override
-    public List<Password> getAllPasswords() {
-        return passwordRepository.findAll().stream()
-                .map(PasswordEntityMapper::toPasswordDomain)
-                .collect(Collectors.toList());
-    }
-
-    @Override
     public Optional<Password> getPassword(UUID passwordId) {
         return passwordRepository.findById(passwordId)
                 .map(PasswordEntityMapper::toPasswordDomain);

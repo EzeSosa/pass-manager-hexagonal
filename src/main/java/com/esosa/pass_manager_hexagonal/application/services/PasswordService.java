@@ -9,27 +9,22 @@ import com.esosa.pass_manager_hexagonal.domain.model.User;
 import com.esosa.pass_manager_hexagonal.domain.ports.input.password.*;
 import com.esosa.pass_manager_hexagonal.domain.ports.input.user.GetUserUseCase;
 
-import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 public class PasswordService {
 
     private final SavePasswordUseCase savePasswordUseCase;
-    private final GetAllPasswordsUseCase getAllPasswordsUseCase;
     private final GetPasswordUseCase getPasswordUseCase;
     private final UpdatePasswordUseCase updatePasswordUseCase;
     private final DeletePasswordUseCase deletePasswordUseCase;
     private final GetUserUseCase getUserUseCase;
 
     public PasswordService(SavePasswordUseCase savePasswordUseCase,
-                           GetAllPasswordsUseCase getAllPasswordsUseCase,
                            GetPasswordUseCase getPasswordUseCase,
                            UpdatePasswordUseCase updatePasswordUseCase,
                            DeletePasswordUseCase deletePasswordUseCase,
                            GetUserUseCase getUserUseCase) {
         this.savePasswordUseCase = savePasswordUseCase;
-        this.getAllPasswordsUseCase = getAllPasswordsUseCase;
         this.getPasswordUseCase = getPasswordUseCase;
         this.updatePasswordUseCase = updatePasswordUseCase;
         this.deletePasswordUseCase = deletePasswordUseCase;
@@ -41,12 +36,6 @@ public class PasswordService {
         Password _password = PasswordMapper.toPassword(createPasswordRequest, _user);
         Password _savedPassword = savePasswordUseCase.savePassword(_password);
         return PasswordMapper.toPasswordResponse(_savedPassword);
-    }
-
-    public List<PasswordResponse> getAllPasswords() {
-        return getAllPasswordsUseCase.getAllPasswords().stream()
-                .map(PasswordMapper::toPasswordResponse)
-                .collect(Collectors.toList());
     }
 
     public PasswordResponse getPassword(UUID passwordId) {
