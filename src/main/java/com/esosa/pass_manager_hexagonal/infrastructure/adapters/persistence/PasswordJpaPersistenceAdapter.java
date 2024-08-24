@@ -1,6 +1,6 @@
 package com.esosa.pass_manager_hexagonal.infrastructure.adapters.persistence;
 
-import com.esosa.pass_manager_hexagonal.domain.extras.CustomPage;
+import com.esosa.pass_manager_hexagonal.domain.shared.CustomPage;
 import com.esosa.pass_manager_hexagonal.domain.model.Password;
 import com.esosa.pass_manager_hexagonal.domain.model.User;
 import com.esosa.pass_manager_hexagonal.domain.ports.output.persistence.PasswordPersistencePort;

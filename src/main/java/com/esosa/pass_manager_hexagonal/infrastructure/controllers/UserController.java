@@ -2,7 +2,7 @@ package com.esosa.pass_manager_hexagonal.infrastructure.controllers;
 
 import com.esosa.pass_manager_hexagonal.application.dtos.responses.PasswordResponse;
 import com.esosa.pass_manager_hexagonal.application.services.UserService;
-import com.esosa.pass_manager_hexagonal.domain.extras.CustomPage;
+import com.esosa.pass_manager_hexagonal.domain.shared.CustomPage;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 

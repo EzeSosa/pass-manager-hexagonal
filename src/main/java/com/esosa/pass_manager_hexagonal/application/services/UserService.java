@@ -2,7 +2,7 @@ package com.esosa.pass_manager_hexagonal.application.services;
 
 import com.esosa.pass_manager_hexagonal.application.dtos.responses.PasswordResponse;
 import com.esosa.pass_manager_hexagonal.application.mappers.PasswordMapper;
-import com.esosa.pass_manager_hexagonal.domain.extras.CustomPage;
+import com.esosa.pass_manager_hexagonal.domain.shared.CustomPage;
 import com.esosa.pass_manager_hexagonal.domain.model.User;
 import com.esosa.pass_manager_hexagonal.domain.ports.input.password.GetUserPasswordsUseCase;
 import com.esosa.pass_manager_hexagonal.domain.ports.input.user.GetUserUseCase;
