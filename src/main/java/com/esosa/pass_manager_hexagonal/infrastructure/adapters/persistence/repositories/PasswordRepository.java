@@ -2,10 +2,11 @@ package com.esosa.pass_manager_hexagonal.infrastructure.adapters.persistence.rep
 
 import com.esosa.pass_manager_hexagonal.infrastructure.adapters.persistence.entities.PasswordEntity;
 import com.esosa.pass_manager_hexagonal.infrastructure.adapters.persistence.entities.UserEntity;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
-import java.util.List;
 import java.util.UUID;
 
 public interface PasswordRepository extends JpaRepository<PasswordEntity, UUID> {
@@ -15,7 +16,7 @@ public interface PasswordRepository extends JpaRepository<PasswordEntity, UUID> 
             " WHERE (p.user = ?1)" +
             " AND (p.deleted = false)"
     )
-    List<PasswordEntity> findByUser(UserEntity user);
+    Page<PasswordEntity> findByUser(PageRequest pageRequest, UserEntity user);
 
     @Query(
             "SELECT CASE WHEN COUNT(p) > 0 THEN true ELSE false END " +

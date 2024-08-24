@@ -2,14 +2,12 @@ package com.esosa.pass_manager_hexagonal.application.services;
 
 import com.esosa.pass_manager_hexagonal.application.dtos.responses.PasswordResponse;
 import com.esosa.pass_manager_hexagonal.application.mappers.PasswordMapper;
-import com.esosa.pass_manager_hexagonal.domain.model.Password;
+import com.esosa.pass_manager_hexagonal.domain.extras.CustomPage;
 import com.esosa.pass_manager_hexagonal.domain.model.User;
 import com.esosa.pass_manager_hexagonal.domain.ports.input.password.GetUserPasswordsUseCase;
 import com.esosa.pass_manager_hexagonal.domain.ports.input.user.GetUserUseCase;
 
-import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 public class UserService {
 
@@ -21,12 +19,10 @@ public class UserService {
         this.getUserPasswordsUseCase = getUserPasswordsUseCase;
     }
 
-    public List<PasswordResponse> getUserPasswords(UUID userId) {
+    public CustomPage<PasswordResponse> getUserPasswords(UUID userId, int pageNumber, int pageSize, String sortAttribute) {
         User _user = getUserUseCase.getUserById(userId);
-        List<Password> _userPasswords = getUserPasswordsUseCase.getUserPasswords(_user);
-        return _userPasswords.stream()
-                .map(PasswordMapper::toPasswordResponse)
-                .collect(Collectors.toList());
+        return getUserPasswordsUseCase.getUserPasswords(_user, pageNumber, pageSize, sortAttribute)
+                .map(PasswordMapper::toPasswordResponse);
     }
 
 }
