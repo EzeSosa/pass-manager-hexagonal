@@ -1,4 +1,4 @@
-package com.esosa.pass_manager_hexagonal.infrastructure.config;
+package com.esosa.pass_manager_hexagonal.infrastructure.beans;
 
 import com.esosa.pass_manager_hexagonal.infrastructure.security.middleware.JWTAuthenticationFilter;
 import com.esosa.pass_manager_hexagonal.infrastructure.security.services.CustomUserDetailsService;
