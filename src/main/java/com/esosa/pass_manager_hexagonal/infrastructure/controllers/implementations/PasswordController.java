@@ -1,17 +1,16 @@
-package com.esosa.pass_manager_hexagonal.infrastructure.controllers;
+package com.esosa.pass_manager_hexagonal.infrastructure.controllers.implementations;
 
 import com.esosa.pass_manager_hexagonal.application.dtos.requests.CreatePasswordRequest;
 import com.esosa.pass_manager_hexagonal.application.dtos.requests.UpdatePasswordRequest;
 import com.esosa.pass_manager_hexagonal.application.dtos.responses.PasswordResponse;
 import com.esosa.pass_manager_hexagonal.application.services.PasswordService;
-import org.springframework.http.HttpStatus;
+import com.esosa.pass_manager_hexagonal.infrastructure.controllers.interfaces.IPasswordController;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
-@RequestMapping("/api/v1/passwords")
 @RestController
-public class PasswordController {
+public class PasswordController implements IPasswordController {
 
     private final PasswordService passwordService;
 
@@ -19,23 +18,19 @@ public class PasswordController {
         this.passwordService = passwordService;
     }
 
-    @PostMapping @ResponseStatus(HttpStatus.CREATED)
-    public PasswordResponse savePassword(@RequestBody CreatePasswordRequest createPasswordRequest) {
+    public PasswordResponse savePassword(CreatePasswordRequest createPasswordRequest) {
         return passwordService.savePassword(createPasswordRequest);
     }
 
-    @GetMapping("/{passwordId}") @ResponseStatus(HttpStatus.OK)
-    public PasswordResponse getPassword(@PathVariable UUID passwordId) {
+    public PasswordResponse getPassword(UUID passwordId) {
         return passwordService.getPassword(passwordId);
     }
 
-    @PatchMapping("/{passwordId}") @ResponseStatus(HttpStatus.OK)
-    public PasswordResponse updatePassword(@PathVariable UUID passwordId, @RequestBody UpdatePasswordRequest updatePasswordRequest) {
+    public PasswordResponse updatePassword(UUID passwordId, UpdatePasswordRequest updatePasswordRequest) {
         return passwordService.updatePassword(passwordId, updatePasswordRequest);
     }
 
-    @DeleteMapping("/{passwordId}") @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deletePassword(@PathVariable UUID passwordId) {
+    public void deletePassword(UUID passwordId) {
         passwordService.deletePassword(passwordId);
     }
 

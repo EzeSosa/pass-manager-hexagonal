@@ -1,16 +1,15 @@
-package com.esosa.pass_manager_hexagonal.infrastructure.controllers;
+package com.esosa.pass_manager_hexagonal.infrastructure.controllers.implementations;
 
 import com.esosa.pass_manager_hexagonal.application.dtos.responses.PasswordResponse;
 import com.esosa.pass_manager_hexagonal.application.services.UserService;
 import com.esosa.pass_manager_hexagonal.domain.shared.CustomPage;
-import org.springframework.http.HttpStatus;
+import com.esosa.pass_manager_hexagonal.infrastructure.controllers.interfaces.IUserController;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
-@RequestMapping("/api/v1/users")
 @RestController
-public class UserController {
+public class UserController implements IUserController {
 
     private final UserService userService;
 
@@ -18,12 +17,11 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping("/{userId}/passwords") @ResponseStatus(HttpStatus.OK)
     public CustomPage<PasswordResponse> getUserPasswords(
-            @PathVariable UUID userId,
-            @RequestParam(defaultValue = "0") int pageNumber,
-            @RequestParam(defaultValue = "10") int pageSize,
-            @RequestParam(defaultValue = "createdAt") String sortBy
+            UUID userId,
+            int pageNumber,
+            int pageSize,
+            String sortBy
     ) {
         return userService.getUserPasswords(userId, pageNumber, pageSize, sortBy);
     }

@@ -1,14 +1,13 @@
-package com.esosa.pass_manager_hexagonal.infrastructure.controllers;
+package com.esosa.pass_manager_hexagonal.infrastructure.controllers.implementations;
 
 import com.esosa.pass_manager_hexagonal.application.dtos.requests.UserRequest;
 import com.esosa.pass_manager_hexagonal.application.dtos.responses.AuthResponse;
 import com.esosa.pass_manager_hexagonal.application.services.AuthService;
-import org.springframework.http.HttpStatus;
+import com.esosa.pass_manager_hexagonal.infrastructure.controllers.interfaces.IAuthController;
 import org.springframework.web.bind.annotation.*;
 
-@RequestMapping("/auth")
 @RestController
-public class AuthController {
+public class AuthController implements IAuthController {
 
     private final AuthService authService;
 
@@ -16,13 +15,11 @@ public class AuthController {
         this.authService = authService;
     }
 
-    @PostMapping("/register") @ResponseStatus(HttpStatus.CREATED)
-    public void register(@RequestBody UserRequest userRequest) {
+    public void register(UserRequest userRequest) {
         authService.register(userRequest);
     }
 
-    @PostMapping("/login") @ResponseStatus(HttpStatus.CREATED)
-    public AuthResponse login(@RequestBody UserRequest userRequest) {
+    public AuthResponse login(UserRequest userRequest) {
         return authService.login(userRequest);
     }
 
