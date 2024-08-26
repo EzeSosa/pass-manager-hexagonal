@@ -1,6 +1,7 @@
 package com.esosa.pass_manager_hexagonal.infrastructure.security.middleware;
 
 import com.esosa.pass_manager_hexagonal.domain.ports.output.auth.TokenManagementPort;
+import com.esosa.pass_manager_hexagonal.infrastructure.security.utils.WhiteListedURLs;
 import io.jsonwebtoken.ExpiredJwtException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -18,6 +19,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
+import java.util.Arrays;
 
 public class JWTAuthenticationFilter extends OncePerRequestFilter {
 
@@ -62,7 +64,8 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
     @Override
     protected boolean shouldNotFilter(HttpServletRequest request) {
         AntPathMatcher pathMatcher = new AntPathMatcher();
-        return pathMatcher.match("/auth/**", request.getRequestURI());
+        return Arrays.stream(WhiteListedURLs.WHITE_LISTED_URLS)
+                .anyMatch(url -> pathMatcher.match( url, request.getRequestURI() ));
     }
 
     private void updateContext(HttpServletRequest request, UserDetails userDetails) {
