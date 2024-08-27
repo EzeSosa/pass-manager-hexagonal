@@ -7,6 +7,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
+import java.util.Optional;
 import java.util.UUID;
 
 public interface PasswordRepository extends JpaRepository<PasswordEntity, UUID> {
@@ -17,6 +18,13 @@ public interface PasswordRepository extends JpaRepository<PasswordEntity, UUID> 
             " AND (p.deleted = false)"
     )
     Page<PasswordEntity> findByUser(PageRequest pageRequest, UserEntity user);
+
+    @Query(
+            "SELECT * FROM passwords p" +
+            " WHERE (p.id = ?1)" +
+            " AND (p.deleted = false)"
+    )
+    Optional<PasswordEntity> findById(UUID passwordId);
 
     @Query(
             "SELECT CASE WHEN COUNT(p) > 0 THEN true ELSE false END " +
