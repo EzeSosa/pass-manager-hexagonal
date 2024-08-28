@@ -20,7 +20,7 @@ public interface PasswordRepository extends JpaRepository<PasswordEntity, UUID> 
     Page<PasswordEntity> findByUser(PageRequest pageRequest, UserEntity user);
 
     @Query(
-            "SELECT * FROM passwords p" +
+            "SELECT p FROM passwords p" +
             " WHERE (p.id = ?1)" +
             " AND (p.deleted = false)"
     )
