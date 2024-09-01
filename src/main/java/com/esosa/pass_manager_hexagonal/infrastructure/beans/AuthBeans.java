@@ -1,5 +1,6 @@
 package com.esosa.pass_manager_hexagonal.infrastructure.beans;
 
+import com.esosa.pass_manager_hexagonal.application.mappers.IUserMapper;
 import com.esosa.pass_manager_hexagonal.application.services.AuthService;
 import com.esosa.pass_manager_hexagonal.application.usecases.auth.EncodePasswordUseCaseImpl;
 import com.esosa.pass_manager_hexagonal.application.usecases.auth.LoginUseCaseImpl;
@@ -26,19 +27,22 @@ public class AuthBeans {
     private final SaveUserUseCase saveUserUseCase;
     private final GetUserUseCase getUserUseCase;
     private final PasswordEncoder passwordEncoder;
+    private final IUserMapper userMapper;
 
     public AuthBeans(
             @Lazy SaveUserUseCase saveUserUseCase,
             @Lazy PasswordEncoder passwordEncoder,
-            @Lazy GetUserUseCase getUserUseCase) {
+            @Lazy GetUserUseCase getUserUseCase,
+            @Lazy IUserMapper userMapper) {
         this.saveUserUseCase = saveUserUseCase;
         this.passwordEncoder = passwordEncoder;
         this.getUserUseCase = getUserUseCase;
+        this.userMapper = userMapper;
     }
 
     @Bean
     public AuthService authService() {
-        return new AuthService( registerUseCase(), loginUseCase(), getUserUseCase );
+        return new AuthService( registerUseCase(), loginUseCase(), getUserUseCase, userMapper );
     }
 
     @Bean

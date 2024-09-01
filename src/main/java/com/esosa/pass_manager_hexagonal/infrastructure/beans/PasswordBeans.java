@@ -6,6 +6,7 @@ import com.esosa.pass_manager_hexagonal.domain.ports.input.password.*;
 import com.esosa.pass_manager_hexagonal.domain.ports.input.user.GetUserUseCase;
 import com.esosa.pass_manager_hexagonal.domain.ports.output.persistence.PasswordPersistencePort;
 import com.esosa.pass_manager_hexagonal.infrastructure.adapters.persistence.PasswordJpaPersistenceAdapter;
+import com.esosa.pass_manager_hexagonal.infrastructure.adapters.persistence.mappers.PasswordMapper;
 import com.esosa.pass_manager_hexagonal.infrastructure.adapters.persistence.repositories.PasswordRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -34,7 +35,8 @@ public class PasswordBeans {
                 getPasswordUseCase(),
                 updatePasswordUseCase(),
                 deletePasswordUseCase(),
-                getUserUseCase
+                getUserUseCase,
+                passwordMapper()
         );
     }
 
@@ -61,6 +63,11 @@ public class PasswordBeans {
     @Bean
     public GetUserPasswordsUseCase getUserPasswordsUseCase() {
         return new GetUserPasswordsUseCaseImpl(passwordPersistencePort());
+    }
+
+    @Bean
+    public PasswordMapper passwordMapper() {
+        return new PasswordMapper();
     }
 
 }
