@@ -9,6 +9,7 @@ import com.esosa.pass_manager_hexagonal.domain.ports.input.user.GetUserUseCase;
 import com.esosa.pass_manager_hexagonal.domain.ports.input.user.SaveUserUseCase;
 import com.esosa.pass_manager_hexagonal.domain.ports.output.persistence.UserPersistencePort;
 import com.esosa.pass_manager_hexagonal.infrastructure.adapters.persistence.UserJpaPersistenceAdapter;
+import com.esosa.pass_manager_hexagonal.infrastructure.adapters.persistence.mappers.UserEntityMapper;
 import com.esosa.pass_manager_hexagonal.infrastructure.adapters.persistence.mappers.UserMapper;
 import com.esosa.pass_manager_hexagonal.infrastructure.adapters.persistence.repositories.UserRepository;
 import org.springframework.context.annotation.Bean;
@@ -22,7 +23,10 @@ public class UserBeans {
     private final GetUserPasswordsUseCase getUserPasswordsUseCase;
     private final IPasswordMapper passwordMapper;
 
-    public UserBeans(UserRepository userRepository, @Lazy GetUserPasswordsUseCase getUserPasswordsUseCase, @Lazy IPasswordMapper passwordMapper) {
+    public UserBeans(
+            UserRepository userRepository,
+            @Lazy GetUserPasswordsUseCase getUserPasswordsUseCase,
+            @Lazy IPasswordMapper passwordMapper) {
         this.userRepository = userRepository;
         this.getUserPasswordsUseCase = getUserPasswordsUseCase;
         this.passwordMapper = passwordMapper;
@@ -30,7 +34,7 @@ public class UserBeans {
 
     @Bean
     public UserPersistencePort userPersistencePort() {
-        return new UserJpaPersistenceAdapter(userRepository);
+        return new UserJpaPersistenceAdapter(userRepository, userEntityMapper());
     }
 
     @Bean
@@ -55,6 +59,11 @@ public class UserBeans {
     @Bean
     public UserMapper userMapper() {
         return new UserMapper();
+    }
+
+    @Bean
+    public UserEntityMapper userEntityMapper() {
+        return new UserEntityMapper();
     }
 
 }

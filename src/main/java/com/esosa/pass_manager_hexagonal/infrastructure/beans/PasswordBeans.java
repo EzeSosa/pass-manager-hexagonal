@@ -6,7 +6,9 @@ import com.esosa.pass_manager_hexagonal.domain.ports.input.password.*;
 import com.esosa.pass_manager_hexagonal.domain.ports.input.user.GetUserUseCase;
 import com.esosa.pass_manager_hexagonal.domain.ports.output.persistence.PasswordPersistencePort;
 import com.esosa.pass_manager_hexagonal.infrastructure.adapters.persistence.PasswordJpaPersistenceAdapter;
+import com.esosa.pass_manager_hexagonal.infrastructure.adapters.persistence.mappers.PasswordEntityMapper;
 import com.esosa.pass_manager_hexagonal.infrastructure.adapters.persistence.mappers.PasswordMapper;
+import com.esosa.pass_manager_hexagonal.infrastructure.adapters.persistence.mappers.UserEntityMapper;
 import com.esosa.pass_manager_hexagonal.infrastructure.adapters.persistence.repositories.PasswordRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,15 +19,20 @@ public class PasswordBeans {
 
     private final PasswordRepository passwordRepository;
     private final GetUserUseCase getUserUseCase;
+    private final UserEntityMapper userEntityMapper;
 
-    public PasswordBeans(PasswordRepository passwordRepository, @Lazy GetUserUseCase getUserUseCase) {
+    public PasswordBeans(
+            PasswordRepository passwordRepository,
+            @Lazy GetUserUseCase getUserUseCase,
+            @Lazy UserEntityMapper userEntityMapper) {
         this.passwordRepository = passwordRepository;
         this.getUserUseCase = getUserUseCase;
+        this.userEntityMapper = userEntityMapper;
     }
 
     @Bean
     public PasswordPersistencePort passwordPersistencePort() {
-        return new PasswordJpaPersistenceAdapter(passwordRepository);
+        return new PasswordJpaPersistenceAdapter(passwordRepository, passwordEntityMapper(), userEntityMapper);
     }
 
     @Bean
@@ -68,6 +75,11 @@ public class PasswordBeans {
     @Bean
     public PasswordMapper passwordMapper() {
         return new PasswordMapper();
+    }
+
+    @Bean
+    public PasswordEntityMapper passwordEntityMapper() {
+        return new PasswordEntityMapper();
     }
 
 }
