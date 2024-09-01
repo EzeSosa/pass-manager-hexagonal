@@ -2,9 +2,7 @@ package com.esosa.pass_manager_hexagonal.infrastructure.adapters.persistence.ent
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
 
-import java.util.List;
 import java.util.UUID;
 
 @Entity(name = "users")
@@ -16,9 +14,6 @@ public class UserEntity {
     private String password;
 
     private boolean deleted = false;
-
-    @OneToMany(mappedBy = "user")
-    private List<PasswordEntity> passwords;
 
     public UserEntity(UUID id, String username, String password) {
         this.id = id;
@@ -50,14 +45,6 @@ public class UserEntity {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public List<PasswordEntity> getPasswords() {
-        return passwords;
-    }
-
-    public void setPasswords(List<PasswordEntity> passwords) {
-        this.passwords = passwords;
     }
 
     public void setDeleted(boolean deleted) {

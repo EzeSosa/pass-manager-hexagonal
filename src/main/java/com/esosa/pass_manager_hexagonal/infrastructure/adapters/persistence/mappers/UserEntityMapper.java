@@ -2,23 +2,20 @@ package com.esosa.pass_manager_hexagonal.infrastructure.adapters.persistence.map
 
 import com.esosa.pass_manager_hexagonal.domain.model.User;
 import com.esosa.pass_manager_hexagonal.infrastructure.adapters.persistence.entities.UserEntity;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 
 public class UserEntityMapper {
 
-    public static User toUserDomain(UserEntity userEntity) {
-        return User.builder()
-                .id( userEntity.getId() )
-                .username( userEntity.getUsername() )
-                .password( userEntity.getPassword() )
-                .build();
+    @Autowired
+    private ObjectMapper objectMapper;
+
+    public User toUserDomain(UserEntity userEntity) {
+        return objectMapper.convertValue(userEntity, User.class);
     }
 
-    public static UserEntity toUserEntity(User user) {
-        return new UserEntity(
-                user.getId(),
-                user.getUsername(),
-                user.getPassword()
-        );
+    public UserEntity toUserEntity(User user) {
+        return objectMapper.convertValue(user, UserEntity.class);
     }
 
 }

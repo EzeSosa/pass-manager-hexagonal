@@ -20,22 +20,26 @@ import java.util.UUID;
 public class PasswordJpaPersistenceAdapter implements PasswordPersistencePort {
 
     private final PasswordRepository passwordRepository;
+    private final PasswordEntityMapper passwordEntityMapper;
+    private final UserEntityMapper userEntityMapper;
 
-    public PasswordJpaPersistenceAdapter(PasswordRepository passwordRepository) {
+    public PasswordJpaPersistenceAdapter(PasswordRepository passwordRepository, PasswordEntityMapper passwordEntityMapper, UserEntityMapper userEntityMapper) {
         this.passwordRepository = passwordRepository;
+        this.passwordEntityMapper = passwordEntityMapper;
+        this.userEntityMapper = userEntityMapper;
     }
 
     @Override
     public Password savePassword(Password password) {
-        PasswordEntity _passwordEntity = PasswordEntityMapper.toPasswordEntity(password);
+        PasswordEntity _passwordEntity = passwordEntityMapper.toPasswordEntity(password);
         passwordRepository.save(_passwordEntity);
-        return PasswordEntityMapper.toPasswordDomain(_passwordEntity);
+        return passwordEntityMapper.toPasswordDomain(_passwordEntity);
     }
 
     @Override
     public Optional<Password> getPassword(UUID passwordId) {
         return passwordRepository.findById(passwordId)
-                .map(PasswordEntityMapper::toPasswordDomain);
+                .map(passwordEntityMapper::toPasswordDomain);
     }
 
     @Override
@@ -58,17 +62,17 @@ public class PasswordJpaPersistenceAdapter implements PasswordPersistencePort {
 
     @Override
     public CustomPage<Password> getUserPasswords(User user, int pageNumber, int pageSize, String sortBy) {
-        UserEntity _userEntity = UserEntityMapper.toUserEntity(user);
+        UserEntity _userEntity = userEntityMapper.toUserEntity(user);
         PageRequest _pageRequest = PageRequest.of(pageNumber, pageSize, Sort.by(Sort.Direction.DESC, sortBy));
         Page<Password> _userPasswords = passwordRepository.findByUser( _pageRequest, _userEntity )
-                .map(PasswordEntityMapper::toPasswordDomain);
+                .map(passwordEntityMapper::toPasswordDomain);
 
         return CustomPageMapper.buildCustomPage(_userPasswords);
     }
 
     @Override
     public boolean existsPasswordByNameAndUser(String name, User user) {
-        UserEntity _userEntity = UserEntityMapper.toUserEntity(user);
+        UserEntity _userEntity = userEntityMapper.toUserEntity(user);
         return passwordRepository.existsByNameAndUser(name, _userEntity);
     }
 
