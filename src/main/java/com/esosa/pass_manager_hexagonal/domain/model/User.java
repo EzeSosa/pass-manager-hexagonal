@@ -8,6 +8,8 @@ public class User {
     private String username;
     private String password;
 
+    private Role role = Role.USER;
+
     public User(UUID id, String username, String password) {
         this.id = id;
         this.username = username;
@@ -38,6 +40,14 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     }
 
 }

@@ -1,7 +1,7 @@
 package com.esosa.pass_manager_hexagonal.infrastructure.security.config;
 
 import com.esosa.pass_manager_hexagonal.infrastructure.security.middleware.JWTAuthenticationFilter;
-import com.esosa.pass_manager_hexagonal.infrastructure.security.utils.WhiteListedURLs;
+import com.esosa.pass_manager_hexagonal.infrastructure.security.utils.WhiteListedResources;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -29,8 +29,8 @@ public class SecurityConfig {
         httpSecurity
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authRequest -> authRequest
-                        .requestMatchers(WhiteListedURLs.WHITE_LISTED_URLS).permitAll()
-                        .anyRequest().authenticated())
+                        .requestMatchers(WhiteListedResources.WHITE_LISTED_URLS).permitAll()
+                        .anyRequest().hasAnyRole(WhiteListedResources.WHITE_LISTED_ROLES))
                 .sessionManagement(sessionManager -> sessionManager.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider)
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);

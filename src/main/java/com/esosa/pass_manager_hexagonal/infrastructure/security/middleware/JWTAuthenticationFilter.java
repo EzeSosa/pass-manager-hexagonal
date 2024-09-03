@@ -1,7 +1,7 @@
 package com.esosa.pass_manager_hexagonal.infrastructure.security.middleware;
 
 import com.esosa.pass_manager_hexagonal.domain.ports.output.auth.TokenManagementPort;
-import com.esosa.pass_manager_hexagonal.infrastructure.security.utils.WhiteListedURLs;
+import com.esosa.pass_manager_hexagonal.infrastructure.security.utils.WhiteListedResources;
 import io.jsonwebtoken.ExpiredJwtException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -64,7 +64,7 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
     @Override
     protected boolean shouldNotFilter(HttpServletRequest request) {
         AntPathMatcher pathMatcher = new AntPathMatcher();
-        return Arrays.stream(WhiteListedURLs.WHITE_LISTED_URLS)
+        return Arrays.stream(WhiteListedResources.WHITE_LISTED_URLS)
                 .anyMatch(url -> pathMatcher.match( url, request.getRequestURI() ));
     }
 
