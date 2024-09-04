@@ -1,6 +1,9 @@
 package com.esosa.pass_manager_hexagonal.infrastructure.adapters.persistence.entities;
 
+import com.esosa.pass_manager_hexagonal.domain.model.Role;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.Id;
 
 import java.util.UUID;
@@ -12,6 +15,9 @@ public class UserEntity {
     private UUID id;
     private String username;
     private String password;
+
+    @Enumerated(EnumType.STRING)
+    private Role role = Role.USER;
 
     private boolean deleted = false;
 
@@ -49,6 +55,14 @@ public class UserEntity {
 
     public void setDeleted(boolean deleted) {
         this.deleted = deleted;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     }
 
 }
