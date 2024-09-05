@@ -11,6 +11,9 @@ spring:
     password: ${DB_PASSWORD:password}
     driver-class-name: com.mysql.cj.jdbc.Driver
 
+cors:
+  originPatterns: ${CORS_ORIGINS:http://localhost:5173}
+
 jwt:
   access-token-expiration: 1800000
   key: ${JWT_KEY:ts5r/cjd7FetOcNksdwz5iy70LDT65PY2b/J56k5+5Y=}
