@@ -6,6 +6,7 @@ public class WhiteListedResources {
             "/auth/**",
             "/swagger-ui/**",
             "/v3/api-docs/**",
+            "/error",
             "/"
     };
 
