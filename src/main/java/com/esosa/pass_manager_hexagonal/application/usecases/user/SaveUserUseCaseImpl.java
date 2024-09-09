@@ -15,9 +15,9 @@ public class SaveUserUseCaseImpl implements SaveUserUseCase {
     }
 
     @Override
-    public User saveUser(User user) {
+    public void saveUser(User user) {
         ifExistsByUsernameThrowException(user.getUsername());
-        return userPersistencePort.saveUser(user);
+        userPersistencePort.saveUser(user);
     }
 
     public void ifExistsByUsernameThrowException(String username) {
