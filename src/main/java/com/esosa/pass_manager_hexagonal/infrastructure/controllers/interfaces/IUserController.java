@@ -1,6 +1,8 @@
 package com.esosa.pass_manager_hexagonal.infrastructure.controllers.interfaces;
 
+import com.esosa.pass_manager_hexagonal.application.dtos.requests.UserRequest;
 import com.esosa.pass_manager_hexagonal.application.dtos.responses.PasswordResponse;
+import com.esosa.pass_manager_hexagonal.application.dtos.responses.UserResponse;
 import com.esosa.pass_manager_hexagonal.domain.shared.CustomPage;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -24,6 +26,14 @@ public interface IUserController {
             @RequestParam(defaultValue = "0") int pageNumber,
             @RequestParam(defaultValue = "10") int pageSize,
             @RequestParam(defaultValue = "createdAt") String sortBy
+    );
+
+    @PatchMapping("/{userId}")
+    @ResponseStatus(HttpStatus.OK)
+    @Operation(summary = "Updates a registered user")
+    UserResponse updateUser(
+            @PathVariable UUID userId,
+            @RequestBody UserRequest userRequest
     );
 
 }
